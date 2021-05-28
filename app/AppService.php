@@ -45,7 +45,7 @@ class AppService
             'service_file'       => $_ENV['SA_SERVICE_FILE'] ?? null,
             'oauth_token'        => $_ENV['DB_OAUTH_TOKEN'] ?? null,
             'root_cert_file'     => $_ENV['YDB_SSL_ROOT_CERTIFICATES_FILE'] ?? null,
-            'temp_dir'           => './tmp',
+            'temp_dir'           => '/tmp',
         ];
 
         $this->config['use_logger'] = $_ENV['USE_LOGGER'] ?? false;

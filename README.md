@@ -13,34 +13,26 @@ Bash commands:
 
 ```bash
 sudo apt install php
-
 curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
-
 sudo apt install php-pear
-
 sudo pecl install grpc
-
 sudo apt install php-curl php-bcmath
 ```
 
 ## Installation
 
 Clone this repository.
-
 ```bash
-git clone git@github.com:alshabalin/ydb-example.git
-
-cd ydb-xample
+git clone git@github.com:yandex-cloud/ydb-php-examples.git
+cd ydb-php-examples
 ```
 
 Copy the .env file:
-
 ```bash
 cp .env.example .env
 ```
 
 Edit your .env file:
-
 ```
 # Common YDB settings
 DB_ENDPOINT=ydb.serverless.yandexcloud.net:2135
@@ -49,17 +41,17 @@ DB_DATABASE=/ru-central1/b1gxxxxxxxxx/etnyyyyyyyyy
 # Auto discovery
 DB_DISCOVERY=false
 
-# Auth variant 1:
+# Auth option 1:
 # OAuth token authentication
 DB_OAUTH_TOKEN=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 
-# Auth variant 2:
+# Auth option 2:
 # Private key authentication
 SA_PRIVATE_KEY_FILE=./private.key
 SA_ACCESS_KEY_ID=ajexxxxxxxxx
 SA_ID=ajeyyyyyyyyy
 
-# Auth variant 3:
+# Auth option 3:
 # Service account JSON file authentication
 SA_SERVICE_FILE=./sa_name.json
 
@@ -71,19 +63,16 @@ USE_LOGGER=false
 ```
 
 Install dependencies:
-
 ```bash
 composer install
 ```
 
 Or update dependencies:
-
 ```bash
 composer update
 ```
 
 Run the console application:
-
 ```bash
 php console
 
