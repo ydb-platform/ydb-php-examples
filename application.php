@@ -16,4 +16,6 @@ $application->add(new App\Commands\RemoveDirectoryCommand);
 $application->add(new App\Commands\CreateTableCommand);
 $application->add(new App\Commands\SelectCommand);
 
+$application->add(new App\Commands\BasicExampleCommand);
+
 $application->run();
