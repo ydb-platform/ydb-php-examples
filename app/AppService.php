@@ -20,6 +20,7 @@ class AppService
             'endpoint'    => null,
             'discovery'   => false,
             'iam_config'  => [
+                'use_metadata'       => false,
                 'key_id'             => null,
                 'service_account_id' => null,
                 'private_key_file'   => null,
@@ -39,6 +40,7 @@ class AppService
         $this->config['db']['discovery'] = $_ENV['DB_DISCOVERY'] ?? false;
 
         $this->config['db']['iam_config'] = [
+            'use_metadata'       => $_ENV['USE_METADATA'] ?? false,
             'key_id'             => $_ENV['SA_ACCESS_KEY_ID'] ?? null,
             'service_account_id' => $_ENV['SA_ID'] ?? null,
             'private_key_file'   => $_ENV['SA_PRIVATE_KEY_FILE'] ?? null,

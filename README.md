@@ -55,6 +55,10 @@ SA_ID=ajeyyyyyyyyy
 # Service account JSON file authentication
 SA_SERVICE_FILE=./sa_name.json
 
+# Auth option 4:
+# Metadata URL authentication
+USE_METADATA=true
+
 # Root CA file (dedicated server only)
 YDB_SSL_ROOT_CERTIFICATES_FILE=./CA.pem
 
@@ -176,6 +180,7 @@ $config = [
     'database' => $_ENV['DB_DATABASE'] ?? null,
     'endpoint' => $_ENV['DB_ENDPOINT'] ?? 'ydb.serverless.yandexcloud.net:2135',
     'iam_config' => [
+        'use_metadata'       => $_ENV['USE_METADATA'] ?? false,
         'key_id'             => $_ENV['SA_ACCESS_KEY_ID'] ?? null,
         'service_account_id' => $_ENV['SA_ID'] ?? null,
         'private_key_file'   => $_ENV['SA_PRIVATE_KEY_FILE'] ?? null,
