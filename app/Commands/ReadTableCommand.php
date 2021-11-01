@@ -63,7 +63,38 @@ class ReadTableCommand extends Command
             throw new \Exception('Failed to get columns for table ' . $table_name);
         }
 
-        foreach ($table->readTable($table_name, $columns) as $i => $result)
+        $options = [
+            'row_limit' => 10,
+            'ordered' => true,
+            'key_range' => [
+                'gte' => $table->tuple('uint64', 10),
+                'lte' => $table->tuple('uint64', 30),
+
+                // other options:
+
+                // multi-column primary key:
+                // 'lte' => $table->tuple('uint64,uin64', [30, 10]), // two-column primary key
+
+                // operators variant:
+                // 'less' => $table->tuple('uint64', 30), // less than
+                // 'lt' => $table->tuple('uint64', 30), // less than
+                // '<' => $table->tuple('uint64', 30), // less than
+
+                // 'less_or_equal' => $table->tuple('uint64', 30), // less than or equal
+                // 'lte' => $table->tuple('uint64', 30), // less than or equal
+                // '<=' => $table->tuple('uint64', 30), // less than or equal
+
+                // 'greater' => $table->tuple('uint64', 30), // greater than
+                // 'gt' => $table->tuple('uint64', 30), // greater than
+                // '>' => $table->tuple('uint64', 30), // greater than
+
+                // 'greater_or_equal' => $table->tuple('uint64', 30), // greater than or equal
+                // 'gte' => $table->tuple('uint64', 30), // greater than or equal
+                // '>=' => $table->tuple('uint64', 30), // greater than or equal
+            ],
+        ];
+
+        foreach ($table->readTable($table_name, $columns, $options) as $i => $result)
         {
             $output->writeln('Portion #' . ($i + 1));
             $output->writeln('Column count: ' . $result->columnCount());
