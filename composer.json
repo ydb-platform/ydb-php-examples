@@ -16,7 +16,7 @@
         }
     ],
     "require": {
-        "yandex-cloud/ydb-php-sdk": "^1.1",
+        "ydb-platform/ydb-php-sdk": "1.*",
         "symfony/console": "^5.2",
         "vlucas/phpdotenv": "^5.3",
         "monolog/monolog": "^2.2"

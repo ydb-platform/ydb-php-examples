@@ -2,7 +2,7 @@
 
 namespace App;
 
-use YandexCloud\Ydb\Ydb;
+use YdbPlatform\Ydb\Ydb;
 
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
@@ -40,7 +40,7 @@ class AppService
         $this->config['db']['discovery'] = $_ENV['DB_DISCOVERY'] ?? false;
 
         $this->config['db']['iam_config'] = [
-            'use_metadata'       => $_ENV['USE_METADATA'] ?? false,
+//            'use_metadata'       => $_ENV['USE_METADATA'] ?? false,
             'key_id'             => $_ENV['SA_ACCESS_KEY_ID'] ?? null,
             'service_account_id' => $_ENV['SA_ID'] ?? null,
             'private_key_file'   => $_ENV['SA_PRIVATE_KEY_FILE'] ?? null,
@@ -51,6 +51,9 @@ class AppService
         ];
 
         $this->config['use_logger'] = $_ENV['USE_LOGGER'] ?? false;
+//        print_r($_ENV);
+//        print("\n\nconfig:\n");
+//        print_r($this->config);
     }
 
     /**
@@ -80,5 +83,4 @@ class AppService
     {
         return new Ydb($this->config('db'), $this->getLogger());
     }
-
 }
