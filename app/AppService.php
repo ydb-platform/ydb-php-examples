@@ -35,22 +35,24 @@ class AppService
 
     public function __construct()
     {
-        $this->config['db']['database']  = $_ENV['DB_DATABASE'] ?? null;
-        $this->config['db']['endpoint']  = $_ENV['DB_ENDPOINT'] ?? static::DEFAULT_ENDPOINT;
-        $this->config['db']['discovery'] = $_ENV['DB_DISCOVERY'] ?? false;
+        $this->config['db']['database']  = $this->getEnv('DB_DATABASE', null);
+        $this->config['db']['endpoint']  = $this->getEnv('DB_ENDPOINT', static::DEFAULT_ENDPOINT);
+        $this->config['db']['discovery'] = $this->getEnv('DB_DISCOVERY', false);
 
         $this->config['db']['iam_config'] = [
-//            'use_metadata'       => $_ENV['USE_METADATA'] ?? false,
-            'key_id'             => $_ENV['SA_ACCESS_KEY_ID'] ?? null,
-            'service_account_id' => $_ENV['SA_ID'] ?? null,
-            'private_key_file'   => $_ENV['SA_PRIVATE_KEY_FILE'] ?? null,
-            'service_file'       => $_ENV['SA_SERVICE_FILE'] ?? null,
-            'oauth_token'        => $_ENV['DB_OAUTH_TOKEN'] ?? null,
-            'root_cert_file'     => $_ENV['YDB_SSL_ROOT_CERTIFICATES_FILE'] ?? null,
+//            'use_metadata'       => $this->getEnv('USE_METADATA', false),
+            'key_id'             => $this->getEnv('SA_ACCESS_KEY_ID', null),
+            'service_account_id' => $this->getEnv('SA_ID', null),
+            'private_key_file'   => $this->getEnv('SA_PRIVATE_KEY_FILE', null),
+            'service_file'       => $this->getEnv('SA_SERVICE_FILE', null),
+            'oauth_token'        => $this->getEnv('DB_OAUTH_TOKEN', null),
+            'root_cert_file'     => $this->getEnv('YDB_SSL_ROOT_CERTIFICATES_FILE', null),
+            'anonymous'          => $this->getEnv('YDB_ANONYMOUS', false),
+            'insecure'           => $this->getEnv('YDB_INSECURE', false),
             'temp_dir'           => '/tmp',
         ];
 
-        $this->config['use_logger'] = $_ENV['USE_LOGGER'] ?? false;
+        $this->config['use_logger'] = $this->getEnv('USE_LOGGER', false);
 //        print_r($_ENV);
 //        print("\n\nconfig:\n");
 //        print_r($this->config);
@@ -82,5 +84,10 @@ class AppService
     public function initYdb()
     {
         return new Ydb($this->config('db'), $this->getLogger());
+    }
+
+    protected function getEnv($var, $default = null)
+    {
+        return $_ENV[$var] ?? getenv($var) ?? $default;
     }
 }

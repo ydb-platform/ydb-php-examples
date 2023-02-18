@@ -2,6 +2,12 @@
 
 ## Prerequisites
 
+### Docker setup
+
+- Docker
+
+### Native setup
+
 - Install PHP 7.3+
 - Install Composer
 - Install PHP extensions:
@@ -18,6 +24,7 @@ sudo apt install php-pear
 sudo pecl install grpc
 sudo apt install php-curl php-bcmath
 ```
+
 
 ## Installation
 
@@ -37,6 +44,9 @@ Edit your .env file:
 # Common YDB settings
 DB_ENDPOINT=ydb.serverless.yandexcloud.net:2135
 DB_DATABASE=/ru-central1/b1gxxxxxxxxx/etnyyyyyyyyy
+
+YDB_ANONYMOUS=false
+YDB_INSECURE=false
 
 # Auto discovery
 DB_DISCOVERY=false
@@ -66,6 +76,44 @@ YDB_SSL_ROOT_CERTIFICATES_FILE=./CA.pem
 USE_LOGGER=false
 ```
 
+To use locally installed YDB:
+
+```
+DB_ENDPOINT=localhost:2136
+DB_DATABASE=/local
+
+YDB_ANONYMOUS=true
+YDB_INSECURE=true
+```
+
+
+### Docker setup
+
+Install and run services
+
+```bash
+docker compose up -d
+```
+
+Or update dependencies:
+```bash
+docker compose run --rm ydb-app composer update
+```
+
+Run the console application:
+
+```bash
+docker compose run --rm ydb-app php console
+
+docker compose run --rm ydb-app php console select1
+
+docker compose run --rm ydb-app php console create my_table
+docker compose run --rm ydb-app php console select my_table
+```
+
+
+### Native setup
+
 Install dependencies:
 ```bash
 composer install
@@ -80,20 +128,22 @@ Run the console application:
 ```bash
 php console
 
-php console whoami
-
-php console list-endpoints
-
-php console ls
-php console mkdir test1
-php console ls test1
-php console rmdir test1
+php console select1
 
 php console create table1
 php console select table1
 ```
 
+
 ## Basic Example
+
+### Docker setup
+
+```bash
+docker compose run --rm ydb-app php console basic_example_v1
+```
+
+### Native setup
 
 ```bash
 php console basic_example_v1
@@ -207,7 +257,7 @@ $session = $ydb->table()->session();
 To create a table use the `createTable` method:
 
 ```php
-use YandexCloud\Ydb\YdbTable;
+use YdbPlatform\Ydb\YdbTable;
 
 $session->createTable(
     'series',

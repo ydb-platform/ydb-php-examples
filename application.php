@@ -6,6 +6,8 @@ Dotenv\Dotenv::createImmutable(__DIR__)->load();
 
 $application = new Symfony\Component\Console\Application;
 
+$application->add(new App\Commands\Select1Command);
+
 $application->add(new App\Commands\WhoAmICommand);
 $application->add(new App\Commands\ListEndpointsCommand);
 

@@ -9,12 +9,6 @@
             "email": "mail@alshabalin.com"
         }
     ],
-    "repositories": [
-        {
-            "type": "git",
-            "url": "https://github.com/yandex-cloud/ydb-php-sdk"
-        }
-    ],
     "require": {
         "ydb-platform/ydb-php-sdk": "1.*",
         "symfony/console": "^5.2",

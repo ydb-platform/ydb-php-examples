@@ -3,7 +3,7 @@
 namespace App\Commands;
 
 use App\AppService;
-use YandexCloud\Ydb\YdbTable;
+use YdbPlatform\Ydb\YdbTable;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -23,7 +23,7 @@ class BasicExampleCommand extends Command
     protected $appService;
 
     /**
-     * @var YandexCloud\Ydb\Ydb
+     * @var YdbPlatform\Ydb\Ydb
      */
     protected $ydb;
 
@@ -39,6 +39,12 @@ class BasicExampleCommand extends Command
         $this->ydb = $this->appService->initYdb();
 
         parent::__construct();
+    }
+
+
+    protected function configure()
+    {
+        $this->setDescription('Run the Basic Example.');
     }
 
     /**

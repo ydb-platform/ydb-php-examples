@@ -4,3 +4,5 @@ composer.lock
 /*.key
 /*.pem
 /sa_name.json
+/ydb_data
+/ydb_certs
