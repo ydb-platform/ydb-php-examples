@@ -30,7 +30,7 @@ sudo apt install php-curl php-bcmath
 
 Clone this repository.
 ```bash
-git clone git@github.com:yandex-cloud/ydb-php-examples.git
+git clone git@github.com:ydb-platform/ydb-php-examples.git
 cd ydb-php-examples
 ```
 
