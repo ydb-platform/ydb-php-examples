@@ -7,7 +7,7 @@ services:
       - 127.0.0.1:2136:2136
       - 127.0.0.1:8765:8765
     volumes:
-      - ./ydb_data:/ydb_data
+      # - ./ydb_data:/ydb_data
       - ./ydb_certs:/ydb_certs
     environment:
       GRPC_TLS_PORT: 2135
